@@ -110,7 +110,7 @@ build_and_package() {
         "swayosd-git"
         "ventoy-bin" 
         "yay-bin"
-        "zen-browser-bin"
+        # "zen-browser-bin"
     )
 
     for i in "${packages[@]}"; do
@@ -183,15 +183,15 @@ build_and_package() {
         "stratos-starship-config"
         )
     for package in "${packages[@]}"; do
-        mkdir -p /tmp/$package
-        cp "$dir"/PKGBUILDS/$package/PKGBUILD /tmp/$package
-        cd /tmp/$package
-        sudo chmod -R 777 /tmp/$package
+        mkdir -p /tmp/"$package"
+        cp "$dir"/PKGBUILDS/"$package"/PKGBUILD /tmp/"$package"
+        cd /tmp/"$package"
+        sudo chmod -R 777 /tmp/"$package"
         sudo -u builder makepkg -cfs --noconfirm
         rm -f **debug**.pkg.tar.zst
-        cp *.pkg.tar.zst $dir/x86_64/
-        cd $dir
-        rm -rf /tmp/$package
+        cp *.pkg.tar.zst "$dir"/x86_64/
+        cd "$dir"
+        rm -rf /tmp/"$package"
     done
 
 }
